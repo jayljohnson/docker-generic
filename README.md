@@ -69,6 +69,7 @@ The makefile includes commonly used commands including:
 * access the linux cli
 * run a python shell
 * connect to the postgres database via psql
+* run tests with pytest, and code coverage reports
 
 ### More details on the makefile
 Docker uses the base directory as a container name prefix.  For purposes of this example, a project at `~/workspace/docker-generic` has the base directory named `docker-generic`.  If you used a different name for your project base directory, the makefiles are aware of the project name automatically as long as the base directory is your current working directory.
