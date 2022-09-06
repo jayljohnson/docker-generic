@@ -4,7 +4,7 @@ DOCKER_IMAGE_PREFIX := ${shell pwd | awk -F/ '{print $$NF}'}
 
 all: version
 
-version:
+version: up
 	@echo 'Base directory: ${DOCKER_IMAGE_PREFIX}'
 	docker exec -ti ${DOCKER_IMAGE_PREFIX}_application_1 sh -c "echo Python Version: && python3 --version"
 
@@ -16,23 +16,22 @@ down:
 	docker-compose down
 
 restart:
-	docker-compose down
-	docker-compose up -d
-	docker ps
+	docker-compose restart
+	docker container ps
 
-build:
+build: down
 	docker-compose build
 
-test:
+test: up
 	coverage run -m pytest && coverage report
 
-psql:
+psql: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_db_1 sh -c "psql -h localhost -p 5432 -U postgres -w"
 
-cli:
+cli: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 /bin/bash
 
-shell:
+shell: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 sh -c "python"
 
 permissions:
