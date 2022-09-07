@@ -1,3 +1,4 @@
 data/*
 .coverage
 .pytest_cache
+scratch/*
