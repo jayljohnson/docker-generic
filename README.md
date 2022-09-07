@@ -1,19 +1,23 @@
-Generic docker containers to launch a minimal environment for new projects and experiments.
+Generic docker containers to launch a minimal environment for new python projects.  This project is intended to be used as a template from which to start other projects or for one-off python analysis or testing work.
 
-This is intended to be used as a template. It uses makefiles to simplify interaction with the docker containers.
+Makefile commands simplify many common interactions with the docker containers.
 
 ### Containers Included
-* application: generic linux container with python3
+* application: generic linux container with python3, pytest, and code coverage
 * db: an empty postgres database
 
-## Installation
-The examples assume that your new project name is `my-project`.  You can use any name that makes sense for your project by replacing `my-project` in the commands that follow with the actual project name.
+## Tutorial
+Use any name that makes sense for your project by replacing `my-project` in the commands below with the actual project name.  Or, start with the default name and change it later.
+
+For users experienced with git and cli basics, it should take less than 10 minutes to have a fully functioning environment up and running.
 
 ### Initialize a new project
-Before starting:
-1. Docker should be running
-2. If any containers are running, shut them down.  To find running containers, run the command: `docker container ps`  (It may work without doing this, but network errors are possible because of port bindings in other containers)
+> **_Prerequisites:_**
+1. Docker should be installed and running
+2. If other containers are running, it's a good idea to shut them down.  To find running containers, run the command: `docker container ps`.  To bring them down, run `docker-compose down`          
+    1. Note: The tutorial may work without doing this, but network errors are possible because of port binding conflicts with other running containers)
 
+> **_Local installation:_**
 Run the next scripts to create a new base directory for your new project.  Then clone the git project files into that directory, build the containers, and start them to make sure everything is working.
 ```
 mkdir my-project
@@ -31,7 +35,7 @@ If permissions errors happen during `make build`, run this to add the current us
 make permissions -i
 ```
 
-To test the postgres database connection, run the following:
+> **_Test the postgres database connection:_**  Run these commands one by one to interact with the database using the psql client: 
 ```
 make psql
 create table test as (select 1);
@@ -40,8 +44,7 @@ select * from test;
 drop table test;
 exit
 ```
-
-Shut down the containers
+Wnen you are done with psql, you can play around some more with the make commands, or shut down the containers by running:
 ```
 make down
 ```
@@ -71,8 +74,10 @@ The makefile includes commonly used commands including:
 * connect to the postgres database via psql
 * run tests with pytest, and code coverage reports
 
-### More details on the makefile
-Docker uses the base directory as a container name prefix.  For purposes of this example, a project at `~/workspace/docker-generic` has the base directory named `docker-generic`.  If you used a different name for your project base directory, the makefiles are aware of the project name automatically as long as the base directory is your current working directory.
+### Makefile details
+In most cases, the makefile commands must run from the base directory.
+
+The makefiles are aware of the project name automatically as long as the base directory is your current working directory. For purposes of this example, a project at `~/workspace/my-project` has the base directory named `my-project`.
 
 ## Troubleshooting
 
@@ -104,8 +109,10 @@ To see the current working directory, run: `pwd`
 
 ### About
 
-This project was started because it takes a lot of work to setup a new project environment from scratch, and I wanted a place to build knowledge on best practices without inventing the wheel for each new project.  The containers simplify and automate lot of the boilerplate environment setups down to a few makefile commands.
+This project was started because it takes a lot of work to setup a new project environment from scratch, and I wanted to avoid reinventing the wheel for each new project.
 
-It was born out of frustration with random environment errors while working with python across different computers with different OS's.  The containerized base environment gives a quick start from which to launch any type project without having to worry about local computer setups and software dependencies.
+Containers simplify and automate the boilerplate environment setups down to a few makefile commands.
 
-The primary tools I like to use are python and a database, and the project has a limited scope that includes those without many extras.  The database is postgres because it reliable for both small projects and at scale.
+This was born out of frustration with random environment errors while working with python across different computers with different OS's.  This project enables a quick start from which to launch any type project without having to worry about local computer setups and software dependencies.
+
+The primary tools I like to use are python and a database.  The project includes only the essentials needed to get a new python project up and running.  The database is postgres because it reliable for both small projects and at scale.

@@ -36,10 +36,13 @@ shell: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 sh -c "python"
 
 permissions:
+	sudo chown -R ${USER}:${USER} .git
+	sudo chown -R ${USER}:${USER} data
 	# Run with -i flag to ignore errors, `make permissions -i`
 	sudo groupadd docker
 	sudo usermod -aG docker ${USER}
 	sudo newgrp docker
+
 
 deploy-staging:
 	git checkout deploy/staging
