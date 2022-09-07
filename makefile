@@ -23,7 +23,8 @@ build: down
 	docker-compose build
 
 test: up
-	coverage run -m pytest && coverage report
+	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 coverage run -m pytest
+	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 coverage report
 
 psql: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_db_1 sh -c "psql -h localhost -p 5432 -U postgres -w"
