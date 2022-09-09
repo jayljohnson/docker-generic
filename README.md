@@ -50,14 +50,16 @@ make down
 ```
 
 ### Setup a new github repo to track changes
-If you wish to, rename the project to something different than `docker-generic` and save it in our own repo.  Replace `my-project` with the actual project name you used in the previous steps.
+If you wish to, rename the project and save it to your own git repo.  Replace `my-project` with the actual project name you used in the previous steps. 
+
+This breaks the link between `docker-generic` project and github, and allows you to re-point it to a new repo.
 ```
 cd my-project
 rm -rf .git
 git init
 ```
 
-Then, the first time you want to push a change to a new remote repo:
+Next, the first time you want to push a change to a new remote repo:
 1. Create a new repo with your git hosting service, such as github, gitlab.  It's a good practice to keep your base directory name and repo name aligned.
 2. Get the repo url
 3. Run `git push` and follow the prompts to point your local branch to the new remote repo branch

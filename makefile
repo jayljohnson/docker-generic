@@ -23,7 +23,7 @@ build: down
 	docker-compose build
 
 test: up
-	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 coverage run -m pytest
+	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 coverage run --branch -m pytest
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 coverage report
 
 psql: up
