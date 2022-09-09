@@ -113,8 +113,8 @@ To see the current working directory, run: `pwd`
 
 This project was started because it takes a lot of work to setup a new project environment from scratch, and I wanted to avoid reinventing the wheel for each new project.
 
-Containers simplify and automate the boilerplate environment setups down to a few makefile commands.
+Containerized environments with makefiles can greatly simplify and automate most of the boilerplate environment setup work.
 
-This was born out of frustration with random environment errors while working with python across different computers with different OS's.  This project enables a quick start from which to launch any type project without having to worry about local computer setups and software dependencies.
+This was born out of frustration with random environment errors while working with python across different computers with different OS's.  This project enables a quick start from which to launch any type of project without having to worry about local computer setups and software dependencies.
 
-The primary tools I like to use are python and a database.  The project includes only the essentials needed to get a new python project up and running.  The database is postgres because it reliable for both small projects and at scale.
+The primary tools I like to use are python and a database.  The project includes only the essentials needed to get a new python project up and running, and the database is postgres because it is reliable for small projects and at scale.
