@@ -13,12 +13,14 @@ For users experienced with git and cli basics, it should take less than 10 minut
 
 ### Initialize a new project
 > **_Prerequisites:_**
-1. Docker should be installed and running
-2. If other containers are running, it's a good idea to shut them down.  To find running containers, run the command: `docker container ps`.  To bring them down, run `docker-compose down`          
-    1. Note: The tutorial may work without doing this, but network errors are possible because of port binding conflicts with other running containers)
+1. Docker should be installed and running.  
+    1. See [here](https://docs.docker.com/engine/install/) for Docker installation instructions.
+2. To avoid networking errors, stop other containers.  This is in case network port bindings from other containers have conflicts.
+    1. To view existing containers, run: `docker ps`
+    1. To stop all containers, run:  `docker kill $(docker ps -q)`
 
 > **_Local installation:_**
-Run the next scripts to create a new base directory for your new project.  Then clone the git project files into that directory, build the containers, and start them to make sure everything is working.
+Run the next commands one-by-one to create a new base directory for the new project, install from the repo, and then build and run the containers.
 ```
 mkdir my-project
 cd my-project
@@ -31,6 +33,7 @@ After running `make version`, you should see: `Python Version:
 Python 3.10.6`
 
 If permissions errors happen during `make build`, run this to add the current user to the docker group and retry:
+
 ```
 make permissions -i
 ```

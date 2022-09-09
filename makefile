@@ -32,7 +32,7 @@ psql: up
 cli: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 /bin/bash
 
-shell: up
+python: up
 	docker exec -ti  ${DOCKER_IMAGE_PREFIX}_application_1 sh -c "python"
 
 permissions:
@@ -42,7 +42,6 @@ permissions:
 	sudo groupadd docker
 	sudo usermod -aG docker ${USER}
 	sudo newgrp docker
-
 
 deploy-staging:
 	git checkout deploy/staging
